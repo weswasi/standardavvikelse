@@ -1,0 +1,13 @@
+name: standardavvikelse
+title: standardavvikelse
+username:
+account: weswasi
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 8261999
+bundleId: 6825565
+url: https://weswasi.shinyapps.io/standardavvikelse/
+when: 1675897260.59676
+lastSyncTime: 1675897260.59676
+asMultiple: FALSE
+asStatic: FALSE
