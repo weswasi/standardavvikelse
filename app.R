@@ -76,6 +76,7 @@ server <- function(input, output, session) {
     std_data() %>% 
       ggplot(aes(x = x)) +
       geom_histogram(bins = 100) +
+      
       {if (input$std_radio == 1) geom_vline(xintercept = input$Genomsnitt - input$Standardavvikelse, linetype = "dashed", color = "#e06666")} +
       {if (input$std_radio == 1) geom_vline(xintercept = input$Genomsnitt + input$Standardavvikelse, linetype = "dashed", color = "#e06666")} +
       {if (input$std_radio == 1) geom_label(aes(x = input$Genomsnitt, y = 16, label = "68 % av observationerna"), colour = "#e06666", fill = "white")} +
