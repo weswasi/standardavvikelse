@@ -101,7 +101,7 @@ server <- function(input, output, session) {
       scale_x_continuous(breaks = seq(0, 200, by = 10), limits = c(0, 200)) +
       theme(axis.title.x=element_blank()) +
       ylab("Antal")
-  }, height = 515)
+  }, height = 562)
 }
 
 # Run the application 
