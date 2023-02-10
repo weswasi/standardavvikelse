@@ -28,8 +28,8 @@ ui <- shiny::tagList(
                       min = 50,
                       max = 550,
                       value = 300),
-          sliderInput("Genomsnitt",
-                      "Genomsnitt",
+          sliderInput("Medelvärde",
+                      "Medelvärde",
                       min = 50,
                       max = 150,
                       value = 100),
@@ -39,13 +39,12 @@ ui <- shiny::tagList(
                       max = 29,
                       value = 15),
           
-          radioButtons("std_radio", "Visa standardavikelse från medelvärdet i figuren",
+          radioButtons("std_radio", "Visa standardavikelse från medelvärdet",
                        choices = list("En standardavvikelse från medelvärdet" = 1, 
                                       "Två standardavvikelse från medelvärdet" = 2,
                                       "Tre standardavvikelse från medelvärdet" = 3,
                                       "Visa ej" = 4), selected = 4)
         ),
-        
         # Show a plot of the generated distribution
         mainPanel(
           plotOutput("plot")
@@ -66,7 +65,7 @@ server <- function(input, output, session) {
   
   std_data <- reactive({
     std_data <- rnorm(n = input$Urvalsstorlek,
-                      mean = input$Genomsnitt,
+                      mean = input$Medelvärde,
                       sd = input$Standardavvikelse)
     std_data <- data.frame(std_data) %>% 
       rename(x = std_data)
@@ -75,26 +74,26 @@ server <- function(input, output, session) {
   output$plot <- renderPlot({
     std_data() %>% 
       ggplot(aes(x = x)) +
-      geom_histogram(bins = 100) +
+      geom_histogram(bins = 50, color = "white", size = 0.5) +
       
-      {if (input$std_radio == 1) geom_vline(xintercept = input$Genomsnitt - input$Standardavvikelse, linetype = "dashed", color = "#e06666")} +
-      {if (input$std_radio == 1) geom_vline(xintercept = input$Genomsnitt + input$Standardavvikelse, linetype = "dashed", color = "#e06666")} +
-      {if (input$std_radio == 1) geom_label(aes(x = input$Genomsnitt, y = 16, label = "68 % av observationerna"), colour = "#e06666", fill = "white")} +
-      {if (input$std_radio == 1) geom_segment(aes(x = input$Genomsnitt - input$Standardavvikelse+1, y = 15, xend = input$Genomsnitt + input$Standardavvikelse-1, yend = 15),
+      {if (input$std_radio == 1) geom_vline(xintercept = input$Medelvärde - input$Standardavvikelse, linetype = "dashed", color = "#e06666")} +
+      {if (input$std_radio == 1) geom_vline(xintercept = input$Medelvärde + input$Standardavvikelse, linetype = "dashed", color = "#e06666")} +
+      {if (input$std_radio == 1) geom_label(aes(x = input$Medelvärde, y = 16, label = "68 % av observationerna"), colour = "#e06666", fill = "white")} +
+      {if (input$std_radio == 1) geom_segment(aes(x = input$Medelvärde - input$Standardavvikelse+1, y = 15, xend = input$Medelvärde + input$Standardavvikelse-1, yend = 15),
                                               arrow = arrow(length = unit(0.5, "cm"), ends = "both"),
                                               colour = "#e06666")} +
       
-      {if (input$std_radio == 2) geom_vline(xintercept = input$Genomsnitt - input$Standardavvikelse*2, linetype = "dashed", color = "#e06666")} +
-      {if (input$std_radio == 2) geom_vline(xintercept = input$Genomsnitt + input$Standardavvikelse*2, linetype = "dashed", color = "#e06666")} +
-      {if (input$std_radio == 2) geom_label(aes(x = input$Genomsnitt, y = 16, label = "95 % av observationerna"), colour = "#e06666", fill = "white")} +
-      {if (input$std_radio == 2) geom_segment(aes(x = input$Genomsnitt - input$Standardavvikelse*2+1, y = 15, xend = input$Genomsnitt + input$Standardavvikelse*2-1, yend = 15),
+      {if (input$std_radio == 2) geom_vline(xintercept = input$Medelvärde - input$Standardavvikelse*2, linetype = "dashed", color = "#e06666")} +
+      {if (input$std_radio == 2) geom_vline(xintercept = input$Medelvärde + input$Standardavvikelse*2, linetype = "dashed", color = "#e06666")} +
+      {if (input$std_radio == 2) geom_label(aes(x = input$Medelvärde, y = 16, label = "95 % av observationerna"), colour = "#e06666", fill = "white")} +
+      {if (input$std_radio == 2) geom_segment(aes(x = input$Medelvärde - input$Standardavvikelse*2+1, y = 15, xend = input$Medelvärde + input$Standardavvikelse*2-1, yend = 15),
                                               arrow = arrow(length = unit(0.5, "cm"), ends = "both"),
                                               colour = "#e06666")} +
       
-      {if (input$std_radio == 3) geom_vline(xintercept = input$Genomsnitt - input$Standardavvikelse*3, linetype = "dashed", color = "#e06666")} +
-      {if (input$std_radio == 3) geom_vline(xintercept = input$Genomsnitt + input$Standardavvikelse*3, linetype = "dashed", color = "#e06666")} +
-      {if (input$std_radio == 3) geom_label(aes(x = input$Genomsnitt, y = 16, label = "99 % av observationerna"), colour = "#e06666", fill = "white")} +
-      {if (input$std_radio == 3) geom_segment(aes(x = input$Genomsnitt - input$Standardavvikelse*3+1, y = 15, xend = input$Genomsnitt + input$Standardavvikelse*3-1, yend = 15),
+      {if (input$std_radio == 3) geom_vline(xintercept = input$Medelvärde - input$Standardavvikelse*3, linetype = "dashed", color = "#e06666")} +
+      {if (input$std_radio == 3) geom_vline(xintercept = input$Medelvärde + input$Standardavvikelse*3, linetype = "dashed", color = "#e06666")} +
+      {if (input$std_radio == 3) geom_label(aes(x = input$Medelvärde, y = 16, label = "99 % av observationerna"), colour = "#e06666", fill = "white")} +
+      {if (input$std_radio == 3) geom_segment(aes(x = input$Medelvärde - input$Standardavvikelse*3+1, y = 15, xend = input$Medelvärde + input$Standardavvikelse*3-1, yend = 15),
                                               arrow = arrow(length = unit(0.5, "cm"), ends = "both"),
                                               colour = "#e06666")} +
       
