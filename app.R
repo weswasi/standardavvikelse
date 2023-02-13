@@ -3,8 +3,7 @@ library(dplyr)
 library(shiny)
 
 # Define UI for application that draws a histogram
-ui <- shiny::tagList(
-  withMathJax(), 
+ui <- tagList(
   includeCSS(path = "www/css/styles.css"), 
   
   tags$div(
@@ -18,8 +17,8 @@ ui <- shiny::tagList(
     ),
     br(),
     fluidPage(
-      # Application title
-      # Sidebar with a slider input for number of bins 
+      
+      # Sidebar
       sidebarLayout(
         sidebarPanel(
           
@@ -45,17 +44,19 @@ ui <- shiny::tagList(
                                       "Tre standardavvikelse från medelvärdet" = 3,
                                       "Visa ej" = 4), selected = 4)
         ),
-        # Show a plot of the generated distribution
+        
+        # Main page
         mainPanel(
           plotOutput("plot")
         )
       )
-    ),
-    tags$footer(
-      tags$div(
-        class = "footer_container", 
-        includeHTML(path = "www/html/footer.html")
-      )
+    )
+  ),
+  tags$footer(
+    tags$div(
+      class = "footer_container", 
+      
+      includeHTML(path = "www/html/footer.html")
     )
   )
 )
