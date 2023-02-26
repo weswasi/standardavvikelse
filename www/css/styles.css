@@ -20,14 +20,15 @@ body {
 }
 
 .footer_container {
+    position:absolute;
+    bottom:0;
+    width:100%;
     display: flex;
-    position:absolute;bottom:0; width:100%;
     flex-direction: column;
     flex-wrap: nowrap;
     align-content: center;
     justify-content: center;
     align-items: center;
     background-color: #e06666;
-    color: white;
-    padding: 1%;
+    padding: 0.3%;
 }

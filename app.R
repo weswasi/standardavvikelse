@@ -52,16 +52,6 @@ ui <- tagList(
       )
     )
   ),
-  br(),
-  br(),
-  br(),
-  br(),
-  br(),  
-  br(),
-  br(),
-  br(),
-  br(),
-  br(),
   tags$footer(
     tags$div(
       class = "footer_container", 
