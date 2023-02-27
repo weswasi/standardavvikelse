@@ -42,7 +42,13 @@ ui <- tagList(
                        choices = list("En standardavvikelse från medelvärdet" = 1, 
                                       "Två standardavvikelse från medelvärdet" = 2,
                                       "Tre standardavvikelse från medelvärdet" = 3,
-                                      "Visa ej" = 4), selected = 4)
+                                      "Visa ej" = 4), selected = 4),
+          br(),
+          tags$a(
+            href="https://github.com/weswasi/standardavvikelse", 
+            tags$img(src="https://github.githubassets.com/images/modules/logos_page/Octocat.png",
+                     width="40",
+                     height="35")),
         ),
         
         # Main page
@@ -50,13 +56,6 @@ ui <- tagList(
           plotOutput("plot")
         )
       )
-    )
-  ),
-  tags$footer(
-    tags$div(
-      class = "footer_container", 
-      
-      includeHTML(path = "www/html/footer.html")
     )
   )
 )
@@ -101,7 +100,7 @@ server <- function(input, output, session) {
       scale_x_continuous(breaks = seq(0, 200, by = 10), limits = c(0, 200)) +
       theme(axis.title.x=element_blank()) +
       ylab("Antal")
-  }, height = 562)
+  }, height = 626)
 }
 
 # Run the application 
