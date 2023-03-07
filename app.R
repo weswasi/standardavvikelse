@@ -44,6 +44,21 @@ ui <- tagList(
                                       "Tre standardavvikelse från medelvärdet" = 3,
                                       "Visa ej" = 4), selected = 4),
           br(),
+          tags$b("Om standardavikelse"),
+          p("Standardavvikelse är ett statistiskt mått på spridningen av data i en mängd av observationer. 
+             Det kan ses som en mått på variationen i fördelningen. En hög standardavvikelse indikerar att data i fördelningen är mer spridda, 
+             medan en låg standardavvikelse indikerar att data är mer samlade runt medelvärdet.", style = "font-size:13px;"),
+          p("Formellt kan standardavvikelsen uttryckas som följande formel:", style = "font-size:13px;"),
+          tags$img(src = "sd.gif"),
+          p("där s är standardavvikelsen, x är varje enskild observation, x̄ är medelvärdet av alla observationer och n är antalet observationer.", style = "font-size:13px;"),
+          p("66%, 95% och 99%-regeln är en förekommande regel inom statistiken som beskriver hur mycket av datamängden som ligger inom en viss avstånd från medelvärdet, 
+                i termer av standardavvikelse. Regeln säger att ~66% av datamängden ligger inom en standardavvikelse från medelvärdet (åt respektive håll från medelvärdet), 
+                ~95% av datamängden ligger inom två standardavvikelser från medelvärdet  (åt respektive håll) och ~99% av datamängden ligger inom tre standardavvikelser från medelvärdet (åt respektive håll).", 
+            style = "font-size:13px;"),
+          p("Dessa regler är användbara för att få en grov uppfattning om hur mycket av datamängden som ligger inom ett visst avstånd från medelvärdet, 
+               och kan användas för att upptäcka eventuella utstickande observationer eller avvikelser från en förväntad fördelning. 
+               Det är viktigt att notera att dessa regler endast är approximativa och att det kan finnas betydande variation från fördelning till fördelning.", style = "font-size:13px;"),
+          br(),
           tags$a(
             href="https://github.com/weswasi/standardavvikelse", 
             tags$img(src="https://github.githubassets.com/images/modules/logos_page/Octocat.png",

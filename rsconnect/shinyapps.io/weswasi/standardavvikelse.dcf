@@ -5,9 +5,9 @@ account: weswasi
 server: shinyapps.io
 hostUrl: https://api.shinyapps.io/v1
 appId: 8261999
-bundleId: 6892053
+bundleId: 6926137
 url: https://weswasi.shinyapps.io/standardavvikelse/
-when: 1677492415.66979
-lastSyncTime: 1677492415.66979
+when: 1678198992.1151
+lastSyncTime: 1678198992.11512
 asMultiple: FALSE
 asStatic: FALSE
